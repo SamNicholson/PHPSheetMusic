@@ -10,10 +10,10 @@ class NoteTest extends PHPUnit_Framework_TestCase
      */
     public function test_that_a_simple_note_can_be_defined()
     {
-        $note = new Note(Note::Ab, Note::CROTCHET);
+        $note = new Note(Note::A, Note::CROTCHET);
 
         $this->assertEquals($note->getLength(), Note::CROTCHET);
-        $this->assertEquals($note->getPitch(), Note::Ab);
+        $this->assertEquals($note->getPitch(), Note::A);
         $this->assertEquals($note->getModifiers(), []);
     }
 
@@ -51,6 +51,27 @@ class NoteTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($note->getPitch(), Note::B);
     }
 
+    /**
+     * This checks that notes with flat modifier have their pitch lowered by a half
+     */
+    public function test_a_note_with_sharp_has_pitch_raised()
+    {
+        $note = new Note(Note::B,Note::CROTCHET,Note::SHARP);
 
+        $this->assertEquals($note->getLength(), Note::CROTCHET);
+        $this->assertEquals($note->getPitch(), Note::B + 0.5);
+    }
+
+
+    /**
+     * This checks that notes with sharp modifier have their pitch raised by a half
+     */
+    public function test_a_note_with_flat_has_pitch_lowered()
+    {
+        $note = new Note(Note::B,Note::CROTCHET,Note::FLAT);
+
+        $this->assertEquals($note->getLength(), Note::CROTCHET);
+        $this->assertEquals($note->getPitch(), Note::B - 0.5);
+    }
 
 }
