@@ -13,7 +13,7 @@ class NoteTest extends PHPUnit_Framework_TestCase
         $note = new Note(Note::A, Note::CROTCHET);
 
         $this->assertEquals($note->getLength(), Note::CROTCHET);
-        $this->assertEquals($note->getPitch(), Note::A);
+        $this->assertEquals($note->getPitch(), -1.5);
         $this->assertEquals($note->getModifiers(), []);
     }
 
@@ -25,7 +25,7 @@ class NoteTest extends PHPUnit_Framework_TestCase
         $note = new Note(Note::B, Note::MINIM, Note::TENUTO);
 
         $this->assertEquals($note->getLength(), Note::MINIM);
-        $this->assertEquals($note->getPitch(), Note::B);
+        $this->assertEquals($note->getPitch(), -0.5);
         $this->assertEquals($note->getModifiers(), [Note::TENUTO]);
     }
 
@@ -37,7 +37,7 @@ class NoteTest extends PHPUnit_Framework_TestCase
         $note = new Note(Note::B, Note::MINIM, [Note::TENUTO, Note::DOTTED]);
 
         $this->assertEquals($note->getLength(), Note::MINIM);
-        $this->assertEquals($note->getPitch(), Note::B);
+        $this->assertEquals($note->getPitch(), -0.5);
         $this->assertEquals($note->getModifiers(), [Note::TENUTO, Note::DOTTED]);
     }
     /**
@@ -48,7 +48,7 @@ class NoteTest extends PHPUnit_Framework_TestCase
         $note = new Note(Note::B);
 
         $this->assertEquals($note->getLength(), Note::CROTCHET);
-        $this->assertEquals($note->getPitch(), Note::B);
+        $this->assertEquals($note->getPitch(), -0.5);
     }
 
     /**
@@ -59,7 +59,7 @@ class NoteTest extends PHPUnit_Framework_TestCase
         $note = new Note(Note::B,Note::CROTCHET,Note::SHARP);
 
         $this->assertEquals($note->getLength(), Note::CROTCHET);
-        $this->assertEquals($note->getPitch(), Note::B + 0.5);
+        $this->assertEquals($note->getPitch(), -0.5 + 0.5);
     }
 
 
@@ -71,7 +71,7 @@ class NoteTest extends PHPUnit_Framework_TestCase
         $note = new Note(Note::B,Note::CROTCHET,Note::FLAT);
 
         $this->assertEquals($note->getLength(), Note::CROTCHET);
-        $this->assertEquals($note->getPitch(), Note::B - 0.5);
+        $this->assertEquals($note->getPitch(), -0.5 - 0.5);
     }
 
 }

@@ -20,13 +20,21 @@ class Note
     const DEMI_SEMIQUAVER = 0.125;
     const HEMI_DEMI_SEMIQUAVER = 0.0625;
 
-    const A = -1.5;
-    const B = -0.5;
-    const C = 0;
-    const D = 1;
-    const E = 2;
-    const F = 2.5;
-    const G = 3.5;
+//    const A = -1.5;
+//    const B = -0.5;
+//    const C = 0;
+//    const D = 1;
+//    const E = 2;
+//    const F = 2.5;
+//    const G = 3.5;
+
+    const A = 'A';
+    const B = 'B';
+    const C = 'C';
+    const D = 'D';
+    const E = 'E';
+    const F = 'F';
+    const G = 'G';
 
     const STACCATO = 'staccato';
     const DOTTED = 'dotted';
@@ -36,13 +44,25 @@ class Note
     const SHARP = 'sharp';
 
     protected $length;
+    protected $noteName;
     protected $pitch;
     protected $modifiers = [];
+
+    private $pitchMap = [
+        'A' => -1.5,
+        'B' => -0.5,
+        'C' => 0,
+        'D' => 1,
+        'E' => 2,
+        'F' => 2.5,
+        'G' => 3.5,
+    ];
 
     public function __construct($pitch, $length = Note::CROTCHET, $modifiers = null)
     {
         $this->length = $length;
-        $this->pitch = $pitch;
+        $this->noteName = $pitch;
+        $this->pitch = $this->pitchMap[$pitch];
         if (!empty($modifiers) && is_string($modifiers)) {
             $this->modifiers[] = $modifiers;
         } else if (!empty($modifiers) && is_array($modifiers)) {
@@ -53,9 +73,9 @@ class Note
 
     private function handlePitchModifiers()
     {
-        if(in_array(Note::FLAT,$this->modifiers)) {
+        if (in_array(Note::FLAT, $this->modifiers)) {
             $this->pitch -= 0.5;
-        } else if(in_array(Note::SHARP,$this->modifiers)) {
+        } else if (in_array(Note::SHARP, $this->modifiers)) {
             $this->pitch += 0.5;
         }
     }
@@ -82,6 +102,14 @@ class Note
     public function getModifiers()
     {
         return $this->modifiers;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNoteName()
+    {
+        return $this->noteName;
     }
 
 

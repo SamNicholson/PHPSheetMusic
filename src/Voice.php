@@ -12,7 +12,7 @@ class Voice {
 
     var $length = 0;
 
-    public function __construct()
+    public function __construct(TimeSignature $timeSignature, KeySignature $keySignature)
     {
 
     }
