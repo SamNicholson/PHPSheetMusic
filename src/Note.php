@@ -7,12 +7,14 @@
  */
 
 namespace SNicholson\PHPSheetMusic;
+use SNicholson\PHPSheetMusic\Interfaces\MusicalItem;
+
 
 /**
  * Class Note
  * @package SNicholson\PHPSheetMusic
  */
-class Note
+class Note implements MusicalItem
 {
 
     /**

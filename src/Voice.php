@@ -8,12 +8,15 @@
 
 namespace SNicholson\PHPSheetMusic;
 
+use SNicholson\PHPSheetMusic\Exceptions\InvalidBarLength;
+use SNicholson\PHPSheetMusic\Interfaces\MusicalItem;
+
 class Voice
 {
 
     private $length = 0;
     private $numOfBars = 0;
-    private $barContents = [];
+    private $bars = [];
 
     private $timeSignature;
     private $keySignature;
@@ -24,16 +27,22 @@ class Voice
         $this->keySignature = $keySignature;
     }
 
-    public function addNote(Note $note)
+    public function bar(MusicalItem ...$items)
     {
-        $this->barContents[] = $note;
-        $this->length += $note->getLength();
-    }
-
-    public function addRest(Rest $rest)
-    {
-        $this->barContents[] = $rest;
-        $this->length += $rest->getLength();
+        $barLength = 0;
+        foreach ($items AS $item) {
+            /** @var MusicalItem $item */
+            $barLength += $item->getLength();
+        }
+        if ($barLength != $this->timeSignature->getDecimalBeatsPerBar()) {
+            throw new InvalidBarLength(
+                "Bar submitted to piece did not match the required length of a bar for this voice, expected "
+                . $this->timeSignature->getDecimalBeatsPerBar() . ' got ' . $barLength
+            );
+        }
+        $this->length += $barLength;
+        $this->bars[] = $items;
+        return $this;
     }
 
     public function getNumOfBars()
@@ -44,7 +53,7 @@ class Voice
 
     public function getBarContents()
     {
-        return $this->barContents;
+        return $this->bars;
     }
 
 }

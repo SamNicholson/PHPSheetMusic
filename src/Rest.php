@@ -7,13 +7,15 @@
  */
 
 namespace SNicholson\PHPSheetMusic;
+use SNicholson\PHPSheetMusic\Interfaces\MusicalItem;
 
 
 /**
  * Class Rest
  * @package SNicholson\PHPSheetMusic
  */
-class Rest {
+class Rest implements MusicalItem
+{
 
     /**
      * @var
