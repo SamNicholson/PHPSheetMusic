@@ -24,4 +24,18 @@ class TimeSignatureTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($time->getBeatLength(),0.5);
     }
 
+    public function test_that_asking_for_decimal_beats_per_bar_works()
+    {
+        $time = new TimeSignature(4,8);
+        $this->assertEquals(2,$time->getDecimalBeatsPerBar());
+
+        $time = new TimeSignature(3,4);
+        var_dump($time->getBeatsPerBar());
+        $this->assertEquals(3,$time->getDecimalBeatsPerBar());
+
+        $time = new TimeSignature(2,16);
+        $this->assertEquals($time->getDecimalBeatsPerBar(),0.5);
+
+    }
+
 }

@@ -8,46 +8,120 @@
 
 namespace SNicholson\PHPSheetMusic;
 
+/**
+ * Class Note
+ * @package SNicholson\PHPSheetMusic
+ */
 class Note
 {
 
+    /**
+     *
+     */
     const BREVE = 8;
+    /**
+     *
+     */
     const SEMIBREVE = 4;
+    /**
+     *
+     */
     const MINIM = 2;
+    /**
+     *
+     */
     const CROTCHET = 1;
+    /**
+     *
+     */
     const QUAVER = 0.5;
+    /**
+     *
+     */
     const SEMIQUAVER = 0.25;
+    /**
+     *
+     */
     const DEMI_SEMIQUAVER = 0.125;
+    /**
+     *
+     */
     const HEMI_DEMI_SEMIQUAVER = 0.0625;
 
-//    const A = -1.5;
-//    const B = -0.5;
-//    const C = 0;
-//    const D = 1;
-//    const E = 2;
-//    const F = 2.5;
-//    const G = 3.5;
-
+    /**
+     *
+     */
     const A = 'A';
+    /**
+     *
+     */
     const B = 'B';
+    /**
+     *
+     */
     const C = 'C';
+    /**
+     *
+     */
     const D = 'D';
+    /**
+     *
+     */
     const E = 'E';
+    /**
+     *
+     */
     const F = 'F';
+    /**
+     *
+     */
     const G = 'G';
 
+    /**
+     *
+     */
     const STACCATO = 'staccato';
+    /**
+     *
+     */
     const DOTTED = 'dotted';
+    /**
+     *
+     */
     const LEGATO = 'legato';
+    /**
+     *
+     */
     const TENUTO = 'tenuto';
+    /**
+     *
+     */
     const FLAT = 'flat';
+    /**
+     *
+     */
     const SHARP = 'sharp';
 
+    /**
+     * @var
+     */
     protected $length;
+    /**
+     * @var
+     */
     protected $noteName;
+    /**
+     * @var
+     */
     protected $pitch;
+    /**
+     * @var array
+     */
     protected $modifiers = [];
 
+    /**
+     * @var array
+     */
     private $pitchMap = [
         'A' => -1.5,
         'B' => -0.5,
@@ -58,6 +132,11 @@ class Note
         'G' => 3.5,
     ];
 
+    /**
+     * @param $pitch
+     * @param int $length
+     * @param null $modifiers
+     */
     public function __construct($pitch, $length = Note::CROTCHET, $modifiers = null)
     {
         $this->length = $length;
@@ -71,6 +150,9 @@ class Note
         $this->handlePitchModifiers();
     }
 
+    /**
+     *
+     */
     private function handlePitchModifiers()
     {
         if (in_array(Note::FLAT, $this->modifiers)) {

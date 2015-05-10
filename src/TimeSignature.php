@@ -49,4 +49,9 @@ class TimeSignature {
         return $this->beatLength;
     }
 
+    public function getDecimalBeatsPerBar()
+    {
+        return $this->beatLength * $this->beatsPerBar;
+    }
+
 }
