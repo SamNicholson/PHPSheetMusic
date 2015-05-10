@@ -30,7 +30,6 @@ class TimeSignatureTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(2,$time->getDecimalBeatsPerBar());
 
         $time = new TimeSignature(3,4);
-        var_dump($time->getBeatsPerBar());
         $this->assertEquals(3,$time->getDecimalBeatsPerBar());
 
         $time = new TimeSignature(2,16);

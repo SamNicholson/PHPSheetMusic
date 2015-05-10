@@ -150,10 +150,11 @@ class Note implements MusicalItem
             $this->modifiers = $modifiers;
         }
         $this->handlePitchModifiers();
+        $this->handleLengthModifiers();
     }
 
     /**
-     *
+     * Handles pitch modifiers which are applied to the note
      */
     private function handlePitchModifiers()
     {
@@ -165,6 +166,17 @@ class Note implements MusicalItem
     }
 
     /**
+     * Handles length modifiers which are applied to the note
+     */
+    private function handleLengthModifiers()
+    {
+        if (in_array(Note::DOTTED, $this->modifiers)) {
+            $this->length = $this->length * 1.5;
+        }
+    }
+
+    /**
+     * Returns the lengoth of the note in decimals
      * @return mixed
      */
     public function getLength()
@@ -173,6 +185,7 @@ class Note implements MusicalItem
     }
 
     /**
+     * Returns the integer pitch of the note
      * @return mixed
      */
     public function getPitch()
@@ -181,6 +194,7 @@ class Note implements MusicalItem
     }
 
     /**
+     * Returns the modifiers that have been applied to this note
      * @return mixed
      */
     public function getModifiers()
@@ -189,6 +203,7 @@ class Note implements MusicalItem
     }
 
     /**
+     * Returns the text name of the note e.g. A, B, C etc.
      * @return mixed
      */
     public function getNoteName()

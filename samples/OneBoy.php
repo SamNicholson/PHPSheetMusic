@@ -21,6 +21,6 @@ $voice = MF::voice($timeSignature,$keySignature);
 //Start defining the notes
 $voice->bar(
     MF::rest(NOTE::MINIM,NOTE::DOTTED)
-)->then(
+)->bar(
 
 );

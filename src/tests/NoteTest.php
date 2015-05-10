@@ -34,11 +34,11 @@ class NoteTest extends PHPUnit_Framework_TestCase
      */
     public function test_a_note_with_multiple_modifiers_returns_them_all()
     {
-        $note = new Note(Note::B, Note::MINIM, [Note::TENUTO, Note::DOTTED]);
+        $note = new Note(Note::B, Note::MINIM, [Note::TENUTO, Note::STACCATO]);
 
         $this->assertEquals($note->getLength(), Note::MINIM);
         $this->assertEquals($note->getPitch(), -0.5);
-        $this->assertEquals($note->getModifiers(), [Note::TENUTO, Note::DOTTED]);
+        $this->assertEquals($note->getModifiers(), [Note::TENUTO, Note::STACCATO]);
     }
     /**
      * Test a note with no properties except pitch is a crotected
@@ -72,6 +72,16 @@ class NoteTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($note->getLength(), Note::CROTCHET);
         $this->assertEquals($note->getPitch(), -0.5 - 0.5);
+    }
+
+    /**
+     * This checks that a dotted note has its length multiplied by 1.5
+     */
+    public function test_dotted_modifier_increases_length_correctly()
+    {
+        $note = new Note(Note::B,Note::CROTCHET,Note::DOTTED);
+
+        $this->assertEquals($note->getLength(), (Note::CROTCHET * 1.5));
     }
 
 }
