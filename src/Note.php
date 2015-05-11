@@ -126,6 +126,43 @@ class Note implements MusicalItem
     protected $modifiers = [];
 
     /**
+     * @var Octave
+     */
+    protected $octave;
+
+    /**
+     * @return Octave
+     */
+    public function getOctave()
+    {
+        return $this->octave;
+    }
+
+    /**
+     * @param Octave $octave
+     */
+    public function setOctave(Octave $octave)
+    {
+        $this->octave = $octave;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPitchMap()
+    {
+        return $this->pitchMap;
+    }
+
+    /**
+     * @param array $pitchMap
+     */
+    public function setPitchMap($pitchMap)
+    {
+        $this->pitchMap = $pitchMap;
+    }
+
+    /**
      * @var array
      */
     private $pitchMap = [
@@ -145,6 +182,7 @@ class Note implements MusicalItem
      */
     public function __construct($pitch, $length = Note::CROTCHET, $modifiers = null)
     {
+        $this->octave = Octave::middle();
         $this->length = $length;
         $this->noteName = $pitch;
         $this->pitch = $this->pitchMap[$pitch];
@@ -155,6 +193,7 @@ class Note implements MusicalItem
         }
         $this->handlePitchModifiers();
         $this->handleLengthModifiers();
+        return $this;
     }
 
     /**

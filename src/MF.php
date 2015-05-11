@@ -12,11 +12,12 @@ class MF
 
     /**
      * @param $pitch
+     * @param null $octave
      * @param null $modifiers
      */
-    static public function breve($pitch, $modifiers = null)
+    static public function breve($pitch, $octave = null, $modifiers = null)
     {
-        self::note($pitch, Note::BREVE, $modifiers);
+        self::note($pitch, Note::BREVE, $octave = null, $modifiers);
     }
 
     /**
@@ -30,12 +31,13 @@ class MF
 
     /**
      * @param $pitch
+     * @param null $octave
      * @param null $modifiers
      * @return Note
      */
-    static public function semiBreve($pitch, $modifiers = null)
+    static public function semiBreve($pitch, $octave = null, $modifiers = null)
     {
-        return self::note($pitch, Note::SEMIBREVE, $modifiers);
+        return self::note($pitch, Note::SEMIBREVE, $octave = null, $modifiers);
     }
 
     /**
@@ -49,12 +51,13 @@ class MF
 
     /**
      * @param $pitch
+     * @param null $octave
      * @param null $modifiers
      * @return Note
      */
-    static public function minim($pitch, $modifiers = null)
+    static public function minim($pitch, $octave = null, $modifiers = null)
     {
-        return self::note($pitch, Note::MINIM, $modifiers);
+        return self::note($pitch, Note::MINIM, $octave, $modifiers);
     }
 
     /**
@@ -68,12 +71,13 @@ class MF
 
     /**
      * @param $pitch
+     * @param null $octave
      * @param null $modifiers
      * @return Note
      */
-    static public function crotchet($pitch, $modifiers = null)
+    static public function crotchet($pitch, $octave = null, $modifiers = null)
     {
-        return self::note($pitch, Note::CROTCHET, $modifiers);
+        return self::note($pitch, Note::CROTCHET, $octave, $modifiers);
     }
 
     /**
@@ -87,12 +91,13 @@ class MF
 
     /**
      * @param $pitch
+     * @param null $octave
      * @param null $modifiers
      * @return Note
      */
-    static public function quaver($pitch, $modifiers = null)
+    static public function quaver($pitch, $octave = null, $modifiers = null)
     {
-        return self::note($pitch, Note::QUAVER, $modifiers);
+        return self::note($pitch, Note::QUAVER, $octave, $modifiers);
     }
 
     /**
@@ -106,12 +111,13 @@ class MF
 
     /**
      * @param $pitch
+     * @param null $octave
      * @param null $modifiers
      * @return Note
      */
-    static public function semiQuaver($pitch, $modifiers = null)
+    static public function semiQuaver($pitch, $octave = null, $modifiers = null)
     {
-        return self::note($pitch, Note::SEMIQUAVER, $modifiers);
+        return self::note($pitch, Note::SEMIQUAVER, $octave, $modifiers);
     }
 
     /**
@@ -123,12 +129,14 @@ class MF
     }
 
     /**
+     * @param $pitch
+     * @param null $octave
      * @param null $modifiers
      * @return Rest
      */
-    static public function demiSemiQuaver($modifiers = null)
+    static public function demiSemiQuaver($pitch, $octave = null, $modifiers = null)
     {
-        return self::rest(Note::DEMI_SEMIQUAVER, $modifiers);
+        return self::note($pitch, Note::DEMI_SEMIQUAVER, $octave, $modifiers);
     }
 
     /**
@@ -162,12 +170,18 @@ class MF
      * Returns a new instance of a note
      * @param $pitch
      * @param int $length
+     * @param null $octave
      * @param null $modifiers
      * @return Note
      */
-    static public function note($pitch, $length = Note::CROTCHET, $modifiers = null)
+    static public function note($pitch, $length = Note::CROTCHET, $octave = null, $modifiers = null)
     {
-        return new Note($pitch, $length, $modifiers);
+        if($octave === null) {
+            $octave = Octave::middle();
+        }
+        $note = new Note($pitch, $length, $modifiers);
+        $note->setOctave($octave);
+        return $note;
     }
 
     /**
