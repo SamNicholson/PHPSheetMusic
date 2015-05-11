@@ -151,9 +151,9 @@ class KeySignature
         $pitch = $note->getPitch();
         if(!empty($keyVar[$note->getNoteName()])) {
             $pitchChange = $keyVar[$note->getNoteName()];
-            if($pitchChange == Note::SHARP) {
+            if($pitchChange == Note::SHARP && !in_array(Note::NATURAL,$note->getModifiers())) {
                 $pitch += 0.5;
-            } else if($pitchChange == Note::FLAT) {
+            } else if($pitchChange == Note::FLAT && !in_array(Note::NATURAL,$note->getModifiers())) {
                 $pitch -= 0.5;
             }
         }

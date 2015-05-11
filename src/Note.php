@@ -103,6 +103,10 @@ class Note implements MusicalItem
      *
      */
     const SHARP = 'sharp';
+    /**
+     *
+     */
+    const NATURAL = 'natural';
 
     /**
      * @var

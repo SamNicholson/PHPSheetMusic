@@ -11,6 +11,154 @@ class MF
 {
 
     /**
+     * @param $pitch
+     * @param null $modifiers
+     */
+    static public function breve($pitch, $modifiers = null)
+    {
+        self::note($pitch, Note::BREVE, $modifiers);
+    }
+
+    /**
+     * @param null $modifiers
+     * @return Rest
+     */
+    static public function breveRest($modifiers = null)
+    {
+        return self::rest(Note::BREVE, $modifiers);
+    }
+
+    /**
+     * @param $pitch
+     * @param null $modifiers
+     * @return Note
+     */
+    static public function semiBreve($pitch, $modifiers = null)
+    {
+        return self::note($pitch, Note::SEMIBREVE, $modifiers);
+    }
+
+    /**
+     * @param null $modifiers
+     * @return Rest
+     */
+    static public function semiBreveRest($modifiers = null)
+    {
+        return self::rest(Note::SEMIBREVE, $modifiers);
+    }
+
+    /**
+     * @param $pitch
+     * @param null $modifiers
+     * @return Note
+     */
+    static public function minim($pitch, $modifiers = null)
+    {
+        return self::note($pitch, Note::MINIM, $modifiers);
+    }
+
+    /**
+     * @param null $modifiers
+     * @return Rest
+     */
+    static public function minimRest($modifiers = null)
+    {
+        return self::rest(Note::MINIM, $modifiers);
+    }
+
+    /**
+     * @param $pitch
+     * @param null $modifiers
+     * @return Note
+     */
+    static public function crotchet($pitch, $modifiers = null)
+    {
+        return self::note($pitch, Note::CROTCHET, $modifiers);
+    }
+
+    /**
+     * @param null $modifiers
+     * @return Rest
+     */
+    static public function crotchetRest($modifiers = null)
+    {
+        return self::rest(Note::CROTCHET, $modifiers);
+    }
+
+    /**
+     * @param $pitch
+     * @param null $modifiers
+     * @return Note
+     */
+    static public function quaver($pitch, $modifiers = null)
+    {
+        return self::note($pitch, Note::QUAVER, $modifiers);
+    }
+
+    /**
+     * @param null $modifiers
+     * @return Rest
+     */
+    static public function quaverRest($modifiers = null)
+    {
+        return self::rest(Note::QUAVER, $modifiers);
+    }
+
+    /**
+     * @param $pitch
+     * @param null $modifiers
+     * @return Note
+     */
+    static public function semiQuaver($pitch, $modifiers = null)
+    {
+        return self::note($pitch, Note::SEMIQUAVER, $modifiers);
+    }
+
+    /**
+     * @param null $modifiers
+     */
+    static public function semiQuaverRest($modifiers = null)
+    {
+        self::rest(Note::SEMIQUAVER, $modifiers);
+    }
+
+    /**
+     * @param null $modifiers
+     * @return Rest
+     */
+    static public function demiSemiQuaver($modifiers = null)
+    {
+        return self::rest(Note::DEMI_SEMIQUAVER, $modifiers);
+    }
+
+    /**
+     * @param null $modifiers
+     * @return Rest
+     */
+    static public function demiSemiQuaverRest($modifiers = null)
+    {
+        return self::rest(Note::DEMI_SEMIQUAVER, $modifiers);
+    }
+
+    /**
+     * @param null $modifiers
+     * @return Rest
+     */
+    static public function hemiDemiSemiQuaver($modifiers = null)
+    {
+        return self::rest(Note::HEMI_DEMI_SEMIQUAVER, $modifiers);
+    }
+
+    /**
+     * @param null $modifiers
+     * @return Rest
+     */
+    static public function hemiDemiSemiQuaverRest($modifiers = null)
+    {
+        return self::rest(Note::HEMI_DEMI_SEMIQUAVER, $modifiers);
+    }
+
+    /**
      * Returns a new instance of a note
      * @param $pitch
      * @param int $length

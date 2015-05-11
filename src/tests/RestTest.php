@@ -15,21 +15,21 @@ class RestTest extends PHPUnit_Framework_TestCase {
     {
         $rest = new Rest(Note::CROTCHET);
         $this->assertEquals($rest->getLength(),Note::CROTCHET);
-        $this->assertEquals($rest->getModifiers(),NULL);
+        $this->assertEquals($rest->getModifiers(),[]);
     }
 
     public function test_reset_with_modifier_returns_single_modifier_in_array()
     {
-        $rest = new Rest(Note::CROTCHET, Note::DOTTED);
+        $rest = new Rest(Note::CROTCHET, Note::STACCATO);
         $this->assertEquals($rest->getLength(),Note::CROTCHET);
-        $this->assertEquals($rest->getModifiers(), [Note::DOTTED]);
+        $this->assertEquals($rest->getModifiers(), [Note::STACCATO]);
     }
 
     public function test_a_rest_with_multiple_modifiers_returns_an_array()
     {
-        $rest = new Rest(Note::CROTCHET, [Note::DOTTED, Note::TENUTO]);
+        $rest = new Rest(Note::CROTCHET, [Note::STACCATO, Note::TENUTO]);
         $this->assertEquals($rest->getLength(),Note::CROTCHET);
-        $this->assertEquals($rest->getModifiers(), [Note::DOTTED, Note::TENUTO]);
+        $this->assertEquals($rest->getModifiers(), [Note::STACCATO, Note::TENUTO]);
     }
 
     public function test_a_no_property_reset_is_a_crotchet()

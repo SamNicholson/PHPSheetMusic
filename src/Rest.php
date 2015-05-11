@@ -24,7 +24,7 @@ class Rest implements MusicalItem
     /**
      * @var array
      */
-    protected $modifiers;
+    protected $modifiers = [];
 
     /**
      * @param $length
@@ -38,6 +38,7 @@ class Rest implements MusicalItem
         } else if (!empty($modifiers) && is_array($modifiers)) {
             $this->modifiers = $modifiers;
         }
+        $this->handleLengthModifiers();
     }
 
     /**
@@ -49,6 +50,15 @@ class Rest implements MusicalItem
         return $this->modifiers;
     }
 
+    /**
+     * Handles length modifiers which are applied to the note
+     */
+    private function handleLengthModifiers()
+    {
+        if (in_array(Note::DOTTED, $this->modifiers)) {
+            $this->length = $this->length * 1.5;
+        }
+    }
     /**
      * Returns the length, default of which is a crotchet
      * @return mixed

@@ -31,4 +31,11 @@ class KeySignatureTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($keySignature->getNoteDecimalPitch($note),(0 + 0.5));
     }
 
+    public function test_note_with_natural_modifier_is_not_affected_by_key_signature()
+    {
+        $note = new \SNicholson\PHPSheetMusic\Note(Note::B,Note::CROTCHET,Note::NATURAL);
+        $keySignature = new KeySignature(KeySignature::$f);
+        $this->assertEquals(-0.5,$keySignature->getNoteDecimalPitch($note));
+    }
+
 }
