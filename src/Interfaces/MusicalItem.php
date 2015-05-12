@@ -1,18 +1,22 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Sam
- * Date: 10/05/2015
- * Time: 19:48
- */
 
 namespace SNicholson\PHPSheetMusic\Interfaces;
 
+/**
+ * Interface MusicalItem
+ * @package SNicholson\PHPSheetMusic\Interfaces
+ */
+interface MusicalItem
+{
 
-interface MusicalItem {
-
+    /**
+     * @return mixed
+     */
     public function getLength();
 
+    /**
+     * @return mixed
+     */
     public function getModifiers();
 
 }

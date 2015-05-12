@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Sam
- * Date: 11/05/2015
- * Time: 23:30
- */
 
 namespace SNicholson\PHPSheetMusic\Abstracts;
-
 
 use SNicholson\PHPSheetMusic\Exceptions\FileHandlerException;
 
@@ -15,7 +8,8 @@ use SNicholson\PHPSheetMusic\Exceptions\FileHandlerException;
  * Class FileHandler
  * @package Abstracts
  */
-class FileHandler {
+class FileHandler
+{
 
     /**
      * @var
@@ -33,7 +27,7 @@ class FileHandler {
     public function openFile($filePath)
     {
         $this->filePath = $filePath;
-        if(!file_exists($filePath)) {
+        if (!file_exists($filePath)) {
             throw new FileHandlerException("Unable to open file $filePath");
         }
         $this->rawFileContents = file_get_contents($filePath);
@@ -45,8 +39,10 @@ class FileHandler {
      */
     public function saveFile($filePath = null)
     {
-        if($filePath === null) $filePath = $this->filePath;
-        return file_put_contents($filePath,$this->rawFileContents);
+        if ($filePath === null) {
+            $filePath = $this->filePath;
+        }
+        return file_put_contents($filePath, $this->rawFileContents);
     }
 
     /**

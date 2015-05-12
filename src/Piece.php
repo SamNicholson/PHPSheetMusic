@@ -1,16 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Sam
- * Date: 12/05/2015
- * Time: 22:49
- */
 
 namespace SNicholson\PHPSheetMusic;
 
+/**
+ * Class Piece
+ * @package SNicholson\PHPSheetMusic
+ */
+class Piece
+{
 
-class Piece {
-
+    /**
+     * @var
+     */
     protected $parts;
 
     /**
@@ -28,5 +29,4 @@ class Piece {
     {
         $this->parts = $parts;
     }
-
 }

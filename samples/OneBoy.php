@@ -3,7 +3,6 @@
  * This is a sample of some music, it is the melody from "One Boy" from the Musical Oliver Twist
  */
 
-use SNicholson\PHPSheetMusic\FileHandlers\MusicXMLGenerator;
 use SNicholson\PHPSheetMusic\KeySignature;
 use SNicholson\PHPSheetMusic\MF;
 use SNicholson\PHPSheetMusic\Note;
@@ -17,14 +16,14 @@ $timeSignature = MF::timeSignature();
 $keySignature = MF::keySignature(KeySignature::$f);
 
 //Start the voice
-$voice = MF::voice($timeSignature,$keySignature);
+$voice = MF::voice($timeSignature, $keySignature);
 
 //Start defining the notes
 $voice->bar(
     MF::minimRest(Note::DOTTED),
     MF::crotchetRest()
 )->bar(
-    MF::minim(Note::D,NOTE::DOTTED),
+    MF::minim(Note::D, NOTE::DOTTED),
     MF::quaver(Note::C),
     MF::quaver(Note::A)
 )->bar(
@@ -34,7 +33,7 @@ $voice->bar(
     MF::quaver(Note::E),
     MF::quaver(Note::A)
 )->bar(
-    MF::minim(Note::D,Note::DOTTED),
+    MF::minim(Note::D, Note::DOTTED),
     MF::semiQuaver(Note::C),
     MF::semiQuaver(Note::B, Note::NATURAL),
     MF::semiQuaver(Note::A),

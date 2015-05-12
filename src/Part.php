@@ -1,24 +1,44 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Sam
- * Date: 11/05/2015
- * Time: 20:49
- */
 
 namespace SNicholson\PHPSheetMusic;
 
+/**
+ * Class Part
+ * @package SNicholson\PHPSheetMusic
+ */
+class Part
+{
 
-class Part {
-
+    /**
+     *
+     */
     const TREBLE = 'tenor';
+    /**
+     *
+     */
     const ALTO = 'alto';
+    /**
+     *
+     */
     const TENOR = 'tenor';
+    /**
+     *
+     */
     const BASS = 'bass';
 
+    /**
+     * @var
+     */
     protected $staveType;
+    /**
+     * @var
+     */
     protected $voices;
 
+    /**
+     * @param $staveType
+     * @param $partId
+     */
     public function __construct($staveType, $partId)
     {
         $this->staveType = $staveType;
@@ -64,6 +84,7 @@ class Part {
     {
         return $this->partId;
     }
+
     /**
      * @param mixed $partId
      */
@@ -72,6 +93,9 @@ class Part {
         $this->partId = $partId;
     }
 
+    /**
+     * @var
+     */
     protected $partId;
 
 }

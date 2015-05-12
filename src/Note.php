@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Sam
- * Date: 09/05/2015
- * Time: 17:11
- */
 
 namespace SNicholson\PHPSheetMusic;
-use SNicholson\PHPSheetMusic\Interfaces\MusicalItem;
 
+use SNicholson\PHPSheetMusic\Interfaces\MusicalItem;
 
 /**
  * Class Note
@@ -188,7 +182,7 @@ class Note implements MusicalItem
         $this->pitch = $this->pitchMap[$pitch];
         if (!empty($modifiers) && is_string($modifiers)) {
             $this->modifiers[] = $modifiers;
-        } else if (!empty($modifiers) && is_array($modifiers)) {
+        } elseif (!empty($modifiers) && is_array($modifiers)) {
             $this->modifiers = $modifiers;
         }
         $this->handlePitchModifiers();
@@ -203,7 +197,7 @@ class Note implements MusicalItem
     {
         if (in_array(Note::FLAT, $this->modifiers)) {
             $this->pitch -= 0.5;
-        } else if (in_array(Note::SHARP, $this->modifiers)) {
+        } elseif (in_array(Note::SHARP, $this->modifiers)) {
             $this->pitch += 0.5;
         }
     }

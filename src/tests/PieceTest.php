@@ -1,5 +1,4 @@
 <?php
-use SNicholson\PHPSheetMusic\Part;
 use SNicholson\PHPSheetMusic\Piece;
 
 /**
@@ -9,8 +8,12 @@ use SNicholson\PHPSheetMusic\Piece;
  * Time: 22:51
  */
 
-class PieceTest extends PHPUnit_Framework_TestCase {
+class PieceTest extends PHPUnit_Framework_TestCase
+{
 
+    /**
+     * @test
+     */
     public function test_piece_returns_voices_correctly()
     {
         $piece = new Piece();
@@ -20,5 +23,4 @@ class PieceTest extends PHPUnit_Framework_TestCase {
         );
         $this->assertEquals([$mock], $piece->getParts());
     }
-
 }
