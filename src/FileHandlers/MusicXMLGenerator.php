@@ -1,20 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Sam
- * Date: 12/05/2015
- * Time: 01:03
- */
 
 namespace SNicholson\PHPSheetMusic\FileHandlers;
 
-
 use SNicholson\PHPSheetMusic\Abstracts\FileHandler;
 
+/**
+ * Class MusicXMLGenerator
+ * @package SNicholson\PHPSheetMusic\FileHandlers
+ */
 class MusicXMLGenerator extends FileHandler
 {
 
+    /**
+     * @var \XMLWriter
+     */
     private $writer;
+    /**
+     * @var
+     */
     private $XMLString;
 
     /**
@@ -25,12 +28,18 @@ class MusicXMLGenerator extends FileHandler
         return $this->XMLString;
     }
 
+    /**
+     * @param \XMLWriter $XMLWriter
+     */
     public function __construct(\XMLWriter $XMLWriter)
     {
         $this->writer = $XMLWriter;
         $this->writer->openMemory();
     }
 
+    /**
+     *
+     */
     public function generateRawXML()
     {
         $this->XMLString = '';
@@ -41,6 +50,9 @@ class MusicXMLGenerator extends FileHandler
         $this->XMLString = $this->writer->outputMemory();
     }
 
+    /**
+     *
+     */
     protected function startDocument()
     {
         $this->writer->startDocument("1.0", 'UTF-8', "no");
@@ -51,10 +63,13 @@ class MusicXMLGenerator extends FileHandler
         );
         $this->writer->endDocument();
         $this->writer->startElement('score-partwise');
-            $this->writer->writeAttribute("version","3.0");
+        $this->writer->writeAttribute("version", "3.0");
         $this->writer->endElement();
     }
 
+    /**
+     *
+     */
     protected function setPartList()
     {
         $this->writer->startElement('part-list');
