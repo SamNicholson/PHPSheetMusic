@@ -17,11 +17,28 @@ class Part {
     const BASS = 'bass';
 
     protected $staveType;
+    protected $voices;
 
     public function __construct($staveType, $partId)
     {
         $this->staveType = $staveType;
         $this->partId = $partId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVoices()
+    {
+        return $this->voices;
+    }
+
+    /**
+     * @param mixed $voices
+     */
+    public function setVoices(Voice ...$voices)
+    {
+        $this->voices = $voices;
     }
 
     /**

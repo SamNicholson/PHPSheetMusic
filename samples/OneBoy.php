@@ -3,6 +3,7 @@
  * This is a sample of some music, it is the melody from "One Boy" from the Musical Oliver Twist
  */
 
+use SNicholson\PHPSheetMusic\FileHandlers\MusicXMLGenerator;
 use SNicholson\PHPSheetMusic\KeySignature;
 use SNicholson\PHPSheetMusic\MF;
 use SNicholson\PHPSheetMusic\Note;

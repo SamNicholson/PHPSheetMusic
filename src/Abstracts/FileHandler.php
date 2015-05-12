@@ -6,7 +6,7 @@
  * Time: 23:30
  */
 
-namespace Abstracts;
+namespace SNicholson\PHPSheetMusic\Abstracts;
 
 
 use SNicholson\PHPSheetMusic\Exceptions\FileHandlerException;
@@ -52,7 +52,7 @@ class FileHandler {
     /**
      *
      */
-    protected function generateRawFile()
+    protected function generateRawXML()
     {
         $this->rawFileContents = '';
     }
