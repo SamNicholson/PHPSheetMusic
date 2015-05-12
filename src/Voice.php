@@ -83,5 +83,4 @@ class Voice
     {
         return $this->bars;
     }
-
 }

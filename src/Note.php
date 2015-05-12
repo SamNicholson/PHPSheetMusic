@@ -12,64 +12,64 @@ class Note implements MusicalItem
 {
 
     /**
-     *
+     * Breve Constant
      */
     const BREVE = 8;
     /**
-     *
+     * Semi Breve constant
      */
     const SEMIBREVE = 4;
     /**
-     *
+     * Minim Constant
      */
     const MINIM = 2;
     /**
-     *
+     * Crotchet Contstant
      */
     const CROTCHET = 1;
     /**
-     *
+     * Quaver Constant
      */
     const QUAVER = 0.5;
     /**
-     *
+     * Semi Quaver constant
      */
     const SEMIQUAVER = 0.25;
     /**
-     *
+     * Demi Semi Quaver Constant
      */
     const DEMI_SEMIQUAVER = 0.125;
     /**
-     *
+     * Hemi Demi Semi Quaver Constant
      */
     const HEMI_DEMI_SEMIQUAVER = 0.0625;
 
     /**
-     *
+     * "A" constant
      */
     const A = 'A';
     /**
-     *
+     * "B" constant
      */
     const B = 'B';
     /**
-     *
+     * "C" constant
      */
     const C = 'C';
     /**
-     *
+     * "D" constant
      */
     const D = 'D';
     /**
-     *
+     * "E" constant
      */
     const E = 'E';
     /**
-     *
+     * "F" constant
      */
     const F = 'F';
     /**
-     *
+     * "G" constant
      */
     const G = 'G';
 

@@ -18,5 +18,4 @@ interface MusicalItem
      * @return mixed
      */
     public function getModifiers();
-
 }

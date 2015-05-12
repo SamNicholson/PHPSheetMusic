@@ -1,15 +1,34 @@
 <?php
 
+namespace SNicholson\PHPSheetMusic\Tests;
+
+use PHPUnit_Framework_TestCase;
+use SNicholson\PHPSheetMusic\FileHandlers\MusicXMLGenerator;
+use SNicholson\PHPSheetMusic\Part;
+use SNicholson\PHPSheetMusic\Piece;
+use XMLWriter;
+
+/**
+ * Class MusicXMLGeneratorTest
+ */
 class MusicXMLGeneratorTest extends PHPUnit_Framework_TestCase
 {
 
-    public function test_simple_xml_generated_is_in_correct_format()
+    /**
+     * @test Test Simple XML Generated is in the correct format
+     */
+    public function testSimpleXMLGeneratedItIsInCorrectFormat()
     {
 
-        $musicXMLWriter = new \SNicholson\PHPSheetMusic\FileHandlers\MusicXMLGenerator(new XMLWriter());
+        $piece = new Piece();
+        $piece->setParts(new Part(Part::TREBLE, 'Music', 'P1'));
+
+        $musicXMLWriter = new MusicXMLGenerator($piece, new XMLWriter());
         $musicXMLWriter->generateRawXML();
-//        $this->assertEquals(file_get_contents(__DIR__.'/XMLFiles/sampleMusicXML.xml'),$musicXMLWriter->getXMLString());
+        $this->assertEquals(
+            file_get_contents(__DIR__ . '/XMLFiles/sampleMusicXML.xml'),
+            $musicXMLWriter->getXMLString()
+        );
 
     }
-
 }

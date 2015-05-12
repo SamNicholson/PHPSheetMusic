@@ -33,16 +33,35 @@ class Part
     /**
      * @var
      */
-    protected $voices;
+    protected $voices = [];
+    /**
+     * @var
+     */
+    protected $name = '';
+
+    /**
+     * @var
+     */
+    protected $id;
 
     /**
      * @param $staveType
+     * @param $name
      * @param $partId
      */
-    public function __construct($staveType, $partId)
+    public function __construct($staveType, $name, $partId)
     {
         $this->staveType = $staveType;
-        $this->partId = $partId;
+        $this->name = $name;
+        $this->id = $partId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -82,7 +101,7 @@ class Part
      */
     public function getId()
     {
-        return $this->partId;
+        return $this->id;
     }
 
     /**
@@ -90,12 +109,7 @@ class Part
      */
     public function setId($partId)
     {
-        $this->partId = $partId;
+        $this->id = $partId;
     }
-
-    /**
-     * @var
-     */
-    protected $partId;
 
 }

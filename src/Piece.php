@@ -12,7 +12,7 @@ class Piece
     /**
      * @var
      */
-    protected $parts;
+    protected $parts = [];
 
     /**
      * @return mixed

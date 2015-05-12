@@ -11,20 +11,22 @@ class MF
 {
 
     /**
+     * Quick generation of Breve
      * @param $pitch
      * @param null $octave
      * @param null $modifiers
      */
-    static public function breve($pitch, $octave = null, $modifiers = null)
+    public static function breve($pitch, $octave = null, $modifiers = null)
     {
         self::note($pitch, Note::BREVE, $octave = null, $modifiers);
     }
 
     /**
+     * Quick Generation of Breve Rest
      * @param null $modifiers
      * @return Rest
      */
-    static public function breveRest($modifiers = null)
+    public static function breveRest($modifiers = null)
     {
         return self::rest(Note::BREVE, $modifiers);
     }
@@ -35,7 +37,7 @@ class MF
      * @param null $modifiers
      * @return Note
      */
-    static public function semiBreve($pitch, $octave = null, $modifiers = null)
+    public static function semiBreve($pitch, $octave = null, $modifiers = null)
     {
         return self::note($pitch, Note::SEMIBREVE, $octave = null, $modifiers);
     }
@@ -44,7 +46,7 @@ class MF
      * @param null $modifiers
      * @return Rest
      */
-    static public function semiBreveRest($modifiers = null)
+    public static function semiBreveRest($modifiers = null)
     {
         return self::rest(Note::SEMIBREVE, $modifiers);
     }
@@ -55,7 +57,7 @@ class MF
      * @param null $modifiers
      * @return Note
      */
-    static public function minim($pitch, $octave = null, $modifiers = null)
+    public static function minim($pitch, $octave = null, $modifiers = null)
     {
         return self::note($pitch, Note::MINIM, $octave, $modifiers);
     }
@@ -64,7 +66,7 @@ class MF
      * @param null $modifiers
      * @return Rest
      */
-    static public function minimRest($modifiers = null)
+    public static function minimRest($modifiers = null)
     {
         return self::rest(Note::MINIM, $modifiers);
     }
@@ -75,7 +77,7 @@ class MF
      * @param null $modifiers
      * @return Note
      */
-    static public function crotchet($pitch, $octave = null, $modifiers = null)
+    public static function crotchet($pitch, $octave = null, $modifiers = null)
     {
         return self::note($pitch, Note::CROTCHET, $octave, $modifiers);
     }
@@ -84,7 +86,7 @@ class MF
      * @param null $modifiers
      * @return Rest
      */
-    static public function crotchetRest($modifiers = null)
+    public static function crotchetRest($modifiers = null)
     {
         return self::rest(Note::CROTCHET, $modifiers);
     }
@@ -95,7 +97,7 @@ class MF
      * @param null $modifiers
      * @return Note
      */
-    static public function quaver($pitch, $octave = null, $modifiers = null)
+    public static function quaver($pitch, $octave = null, $modifiers = null)
     {
         return self::note($pitch, Note::QUAVER, $octave, $modifiers);
     }
@@ -104,7 +106,7 @@ class MF
      * @param null $modifiers
      * @return Rest
      */
-    static public function quaverRest($modifiers = null)
+    public static function quaverRest($modifiers = null)
     {
         return self::rest(Note::QUAVER, $modifiers);
     }
@@ -115,7 +117,7 @@ class MF
      * @param null $modifiers
      * @return Note
      */
-    static public function semiQuaver($pitch, $octave = null, $modifiers = null)
+    public static function semiQuaver($pitch, $octave = null, $modifiers = null)
     {
         return self::note($pitch, Note::SEMIQUAVER, $octave, $modifiers);
     }
@@ -123,7 +125,7 @@ class MF
     /**
      * @param null $modifiers
      */
-    static public function semiQuaverRest($modifiers = null)
+    public static function semiQuaverRest($modifiers = null)
     {
         self::rest(Note::SEMIQUAVER, $modifiers);
     }
@@ -134,7 +136,7 @@ class MF
      * @param null $modifiers
      * @return Rest
      */
-    static public function demiSemiQuaver($pitch, $octave = null, $modifiers = null)
+    public static function demiSemiQuaver($pitch, $octave = null, $modifiers = null)
     {
         return self::note($pitch, Note::DEMI_SEMIQUAVER, $octave, $modifiers);
     }
@@ -143,7 +145,7 @@ class MF
      * @param null $modifiers
      * @return Rest
      */
-    static public function demiSemiQuaverRest($modifiers = null)
+    public static function demiSemiQuaverRest($modifiers = null)
     {
         return self::rest(Note::DEMI_SEMIQUAVER, $modifiers);
     }
@@ -152,7 +154,7 @@ class MF
      * @param null $modifiers
      * @return Rest
      */
-    static public function hemiDemiSemiQuaver($modifiers = null)
+    public static function hemiDemiSemiQuaver($modifiers = null)
     {
         return self::rest(Note::HEMI_DEMI_SEMIQUAVER, $modifiers);
     }
@@ -161,7 +163,7 @@ class MF
      * @param null $modifiers
      * @return Rest
      */
-    static public function hemiDemiSemiQuaverRest($modifiers = null)
+    public static function hemiDemiSemiQuaverRest($modifiers = null)
     {
         return self::rest(Note::HEMI_DEMI_SEMIQUAVER, $modifiers);
     }
@@ -174,9 +176,9 @@ class MF
      * @param null $modifiers
      * @return Note
      */
-    static public function note($pitch, $length = Note::CROTCHET, $octave = null, $modifiers = null)
+    public static function note($pitch, $length = Note::CROTCHET, $octave = null, $modifiers = null)
     {
-        if($octave === null) {
+        if ($octave === null) {
             $octave = Octave::middle();
         }
         $note = new Note($pitch, $length, $modifiers);
@@ -190,7 +192,7 @@ class MF
      * @param array $modifiers
      * @return Rest
      */
-    static public function rest($length = Note::CROTCHET, $modifiers = [])
+    public static function rest($length = Note::CROTCHET, $modifiers = [])
     {
         return new Rest($length, $modifiers);
     }
@@ -201,7 +203,7 @@ class MF
      * @param int $beatLength
      * @return TimeSignature
      */
-    static public function timeSignature($beatsPerBar = 4, $beatLength = 4)
+    public static function timeSignature($beatsPerBar = 4, $beatLength = 4)
     {
         return new TimeSignature($beatsPerBar, $beatLength);
     }
@@ -211,7 +213,7 @@ class MF
      * @param $keyName
      * @return keySignature
      */
-    static public function keySignature($keyName)
+    public static function keySignature($keyName)
     {
         return new keySignature($keyName);
     }
@@ -222,7 +224,7 @@ class MF
      * @param KeySignature $keySignature
      * @return Voice
      */
-    static public function voice(TimeSignature $timeSignature, KeySignature $keySignature)
+    public static function voice(TimeSignature $timeSignature, KeySignature $keySignature)
     {
         return new Voice($timeSignature, $keySignature);
     }

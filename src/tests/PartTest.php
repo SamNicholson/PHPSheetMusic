@@ -1,33 +1,41 @@
 <?php
+
+namespace SNicholson\PHPSheetMusic\Tests;
+
+use PHPUnit_Framework_TestCase;
 use SNicholson\PHPSheetMusic\Part;
 
 /**
- * Created by PhpStorm.
- * User: Sam
- * Date: 11/05/2015
- * Time: 20:50
+ * Class PartTest
  */
 class PartTest extends PHPUnit_Framework_TestCase
 {
 
-    public function test_stave_returns_name_correctly()
+    /**
+     * @test Test part returns name correctly
+     */
+    public function testPartReturnsNameCorrectly()
     {
-        $part = new Part(Part::TREBLE, 'PART1');
+        $part = new Part(Part::TREBLE, 'PART1', 'id');
 
         $this->assertEquals(Part::TREBLE, $part->getStaveType());
-        $this->assertEquals('PART1', $part->getId());
+        $this->assertEquals('PART1', $part->getName());
+        $this->assertEquals('id', $part->getId());
 
     }
 
-    public function test_stave_returns_voices_correctly()
+    /**
+     * @test Test part returns voices correctly
+     */
+    public function testPartReturnsVoicesCorrectly()
     {
-        $part = new Part(Part::TREBLE, 'PART1');
+        $part = new Part(Part::TREBLE, 'PART1', 'id');
         $mock = $this->getMockBuilder('SNicholson\PHPSheetMusic\Voice')->disableOriginalConstructor()->getMock();
+        $this->assertEquals([], $part->getVoices());
         $part->setVoices(
             $mock
         );
         $this->assertEquals(Part::TREBLE, $part->getStaveType());
         $this->assertEquals([$mock], $part->getVoices());
     }
-
 }
