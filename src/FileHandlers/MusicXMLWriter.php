@@ -24,8 +24,11 @@ class MusicXMLWriter extends FileHandler {
     protected function generateRawFile(){
         $this->XMLFile = '';
 
+        //Start the document
         $this->startDocument();
 
+
+        //End the document
         $this->endDocument();
 
         $this->rawFileContents = $this->XMLFile;
