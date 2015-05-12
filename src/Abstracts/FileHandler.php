@@ -11,11 +11,25 @@ namespace Abstracts;
 
 use SNicholson\PHPSheetMusic\Exceptions\FileHandlerException;
 
+/**
+ * Class FileHandler
+ * @package Abstracts
+ */
 class FileHandler {
 
+    /**
+     * @var
+     */
     protected $rawFileContents;
+    /**
+     * @var
+     */
     protected $filePath;
 
+    /**
+     * @param $filePath
+     * @throws FileHandlerException
+     */
     public function openFile($filePath)
     {
         $this->filePath = $filePath;
@@ -25,10 +39,22 @@ class FileHandler {
         $this->rawFileContents = file_get_contents($filePath);
     }
 
+    /**
+     * @param null $filePath
+     * @return int
+     */
     public function saveFile($filePath = null)
     {
         if($filePath === null) $filePath = $this->filePath;
         return file_put_contents($filePath,$this->rawFileContents);
+    }
+
+    /**
+     *
+     */
+    protected function generateRawFile()
+    {
+        $this->rawFileContents = '';
     }
 
 }
