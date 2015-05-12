@@ -10,4 +10,4 @@ install:
 
 script:
     - phpunit
-    - phpcs
+    - phpcs /src
