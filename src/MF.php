@@ -222,11 +222,11 @@ class MF
      * Returns a new instance of a voice
      * @param TimeSignature $timeSignature
      * @param KeySignature $keySignature
-     * @return Voice
+     * @return Measure
      */
     public static function voice(TimeSignature $timeSignature, KeySignature $keySignature)
     {
-        return new Voice($timeSignature, $keySignature);
+        return new Measure($timeSignature, $keySignature);
     }
 
 }

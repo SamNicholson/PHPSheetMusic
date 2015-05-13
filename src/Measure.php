@@ -6,10 +6,10 @@ use SNicholson\PHPSheetMusic\Exceptions\InvalidBarLength;
 use SNicholson\PHPSheetMusic\Interfaces\MusicalItem;
 
 /**
- * Class Voice
+ * Class Measure
  * @package SNicholson\PHPSheetMusic
  */
-class Voice
+class Measure
 {
 
     /**
@@ -29,19 +29,28 @@ class Voice
      * @var TimeSignature
      */
     private $timeSignature;
+
     /**
      * @var KeySignature
      */
     private $keySignature;
+    /**
+     * Takes the known key signature
+     * @param KeySignature $keySignature
+     * @internal param TimeSignature $timeSignature
+     */
+    public function __construct(KeySignature $keySignature)
+    {
+        $this->keySignature = $keySignature;
+        $this->timeSignature = new TimeSignature();
+    }
 
     /**
      * @param TimeSignature $timeSignature
-     * @param KeySignature $keySignature
      */
-    public function __construct(TimeSignature $timeSignature, KeySignature $keySignature)
+    public function setTimeSignature(TimeSignature $timeSignature)
     {
         $this->timeSignature = $timeSignature;
-        $this->keySignature = $keySignature;
     }
 
     /**

@@ -5,6 +5,7 @@ namespace SNicholson\PHPSheetMusic\FileHandlers;
 use SNicholson\PHPSheetMusic\Abstracts\FileHandler;
 use SNicholson\PHPSheetMusic\Part;
 use SNicholson\PHPSheetMusic\Piece;
+use SNicholson\PHPSheetMusic\Measure;
 use XMLWriter;
 
 /**
@@ -65,6 +66,9 @@ class MusicXMLGenerator extends FileHandler
         //Generate the part list
         $this->setPartList();
 
+        //Generate the individual parts
+        $this->generateParts();
+
         //Close left over elements
         $this->endDocument();
 
@@ -112,5 +116,22 @@ class MusicXMLGenerator extends FileHandler
             $this->writer->endElement();
         }
         $this->writer->endElement();
+    }
+
+    protected function generateParts()
+    {
+        /** @var Part $part */
+        foreach ($this->parts as $part) {
+            $this->writer->startElement('part');
+            $this->writer->writeAttribute('id', $part->getId());
+            /** @var Measure $measures */
+            foreach ($part->getMeasures() as $measures) {
+                $this->writer->startElement('measure');
+                $this->writer->endElement();
+                $measures->getBarContents();
+            }
+
+            $this->writer->endElement();
+        }
     }
 }

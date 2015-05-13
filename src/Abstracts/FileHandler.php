@@ -8,19 +8,22 @@ use SNicholson\PHPSheetMusic\Exceptions\FileHandlerException;
  * Class FileHandler
  * @package Abstracts
  */
-class FileHandler
+abstract class FileHandler
 {
 
     /**
+     * The raw file
      * @var
      */
     protected $rawFileContents;
     /**
+     * The path to the File
      * @var
      */
     protected $filePath;
 
     /**
+     * Opens a file at the given file path
      * @param $filePath
      * @throws FileHandlerException
      */
@@ -34,6 +37,7 @@ class FileHandler
     }
 
     /**
+     * Saves the file to the given filepath
      * @param null $filePath
      * @return int
      */
@@ -46,11 +50,7 @@ class FileHandler
     }
 
     /**
-     *
+     * The method called to process the raw file
      */
-    protected function generateRawXML()
-    {
-        $this->rawFileContents = '';
-    }
-
+    abstract protected function generateRawXML();
 }

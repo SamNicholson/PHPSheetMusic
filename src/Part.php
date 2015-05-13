@@ -33,7 +33,7 @@ class Part
     /**
      * @var
      */
-    protected $voices = [];
+    protected $measures = [];
     /**
      * @var
      */
@@ -67,17 +67,17 @@ class Part
     /**
      * @return mixed
      */
-    public function getVoices()
+    public function getMeasures()
     {
-        return $this->voices;
+        return $this->measures;
     }
 
     /**
-     * @param mixed $voices
+     * @param mixed $measures
      */
-    public function setVoices(Voice ...$voices)
+    public function setMeasures(Measure ...$measures)
     {
-        $this->voices = $voices;
+        $this->measures = $measures;
     }
 
     /**

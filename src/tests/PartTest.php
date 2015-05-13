@@ -30,12 +30,12 @@ class PartTest extends PHPUnit_Framework_TestCase
     public function testPartReturnsVoicesCorrectly()
     {
         $part = new Part(Part::TREBLE, 'PART1', 'id');
-        $mock = $this->getMockBuilder('SNicholson\PHPSheetMusic\Voice')->disableOriginalConstructor()->getMock();
-        $this->assertEquals([], $part->getVoices());
-        $part->setVoices(
+        $mock = $this->getMockBuilder('SNicholson\PHPSheetMusic\Measure')->disableOriginalConstructor()->getMock();
+        $this->assertEquals([], $part->getMeasures());
+        $part->setMeasures(
             $mock
         );
         $this->assertEquals(Part::TREBLE, $part->getStaveType());
-        $this->assertEquals([$mock], $part->getVoices());
+        $this->assertEquals([$mock], $part->getMeasures());
     }
 }
