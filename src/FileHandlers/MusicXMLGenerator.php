@@ -135,24 +135,42 @@ class MusicXMLGenerator extends FileHandler
             /** @var Bar $measures */
             foreach ($part->getBars() as $measures) {
                 $this->incrementMeasureNumber();
-                $this->generateMeasure($measures);
+                $this->generateMeasure($part, $measures);
             }
-
             $this->writer->endElement();
         }
     }
 
     /**
+     * @param Part $part
      * @param Bar $bar
      */
-    protected function generateMeasure(Bar $bar)
+    protected function generateMeasure(Part $part, Bar $bar)
     {
         //Write the measure element
         $this->writer->startElement('measure');
         $this->writer->writeAttribute('number', $this->currentMeasureNumber);
 
         //Write the measures attributes
+        $this->writer->startElement('attributes');
+        $this->writer->writeElement(
+            'divisions',
+            $bar->getTimeSignature()->getXMLDivisions()
+        );
 
+        $this->writer->startElement('key');
+        $this->writer->writeElement('fifths', $bar->getKeySignature()->generateXMLFifths());
+        $this->writer->endElement();
+
+        $this->writer->startElement('time');
+        $this->writer->writeElement('beats', $bar->getTimeSignature()->getBeatsPerBar());
+        $this->writer->writeElement('beat-type', $bar->getTimeSignature()->getBeatType());
+        $this->writer->endElement();
+
+        $this->writer->startElement('clef');
+        $this->writer->writeElement('sign', $part->generateXMLSign());
+        $this->writer->writeElement('line', $part->generateXMLLine());
+        $this->writer->endElement();
 
         /** @var MusicalItem $musicalItem */
         foreach ($bar->getBarContents() as $musicalItem) {

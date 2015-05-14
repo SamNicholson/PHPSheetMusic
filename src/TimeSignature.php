@@ -8,13 +8,18 @@
 
 namespace SNicholson\PHPSheetMusic;
 
-class TimeSignature {
+/**
+ * Class TimeSignature
+ * @package SNicholson\PHPSheetMusic
+ */
+class TimeSignature
+{
 
     /**
      * The beat length, is stored in decimal e.g. crotchet = 1, quaver = 0.5
      * @var float
      */
-    private $beatLength;
+    private $beatType;
 
     /**
      * The number of beats per bar
@@ -26,13 +31,15 @@ class TimeSignature {
     /**
      * Recieves beats per bar and beat length
      * @param int $beatsPerBar
-     * @param int $beatLength
+     * @param int $beatType
+     * @internal param int $beatLength
      */
-    public function __construct($beatsPerBar = 4, $beatLength = 4)
+    public function __construct($beatsPerBar = 4, $beatType = 4)
     {
         $this->beatsPerBar = $beatsPerBar;
-        $this->beatLength = (1 / $beatLength) * 4;
+        $this->beatType = $beatType;
     }
+
     /**
      * @return int
      */
@@ -44,14 +51,24 @@ class TimeSignature {
     /**
      * @return float
      */
-    public function getBeatLength()
+    public function getBeatType()
     {
-        return $this->beatLength;
+        return $this->beatType;
     }
 
+    /**
+     * @return float
+     */
     public function getDecimalBeatsPerBar()
     {
-        return $this->beatLength * $this->beatsPerBar;
+        return ((1 / $this->beatType) * 4) * $this->beatsPerBar;
     }
 
+    /**
+     * @return int
+     */
+    public function getXMLDivisions()
+    {
+        return 1;
+    }
 }

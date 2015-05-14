@@ -1,39 +1,50 @@
 <?php
+
+namespace SNicholson\PHPSheetMusic\Tests;
+
+use PHPUnit_Framework_TestCase;
 use SNicholson\PHPSheetMusic\TimeSignature;
 
 /**
- * Created by PhpStorm.
- * User: Sam
- * Date: 09/05/2015
- * Time: 21:07
+ * Class TimeSignatureTest
+ * @package SNicholson\PHPSheetMusic\Tests
  */
+class TimeSignatureTest extends PHPUnit_Framework_TestCase
+{
 
-class TimeSignatureTest extends PHPUnit_Framework_TestCase {
-
-    public function test_no_parameters_is_4_4()
+    /**
+     * @test Test No Parameter's set gives 4 4
+     */
+    public function testNoParametersIs44()
     {
         $time = new TimeSignature();
-        $this->assertEquals($time->getBeatLength(),1);
-        $this->assertEquals($time->getBeatsPerBar(),4);
+        $this->assertEquals(4, $time->getBeatType());
+        $this->assertEquals(4, $time->getBeatsPerBar());
     }
 
-    public function test_note_length_is_converted_to_decimal_storage()
+    /**
+     * @test Test Note length is stored correctly
+     */
+    public function testNoteLengthIsStoredCorrectly()
     {
-        $time = new TimeSignature(8,8);
-        $this->assertEquals($time->getBeatsPerBar(),8);
-        $this->assertEquals($time->getBeatLength(),0.5);
+        $time = new TimeSignature(8, 8);
+        $this->assertEquals(8, $time->getBeatsPerBar());
+        $this->assertEquals(8, $time->getBeatType());
     }
 
-    public function test_that_asking_for_decimal_beats_per_bar_works()
+    /**
+     * @test Test That asking for decimal time works
+     */
+    public function testThatAskingForDecimalTimeWorks()
     {
-        $time = new TimeSignature(4,8);
-        $this->assertEquals(2,$time->getDecimalBeatsPerBar());
+        $time = new TimeSignature(4, 8);
+        $this->assertEquals(2, $time->getDecimalBeatsPerBar());
 
-        $time = new TimeSignature(3,4);
-        $this->assertEquals(3,$time->getDecimalBeatsPerBar());
+        $time = new TimeSignature(3, 4);
+        $this->assertEquals(3, $time->getDecimalBeatsPerBar());
 
-        $time = new TimeSignature(2,16);
-        $this->assertEquals($time->getDecimalBeatsPerBar(),0.5);
+        $time = new TimeSignature(2, 16);
+        $this->assertEquals($time->getDecimalBeatsPerBar(), 0.5);
 
     }
 

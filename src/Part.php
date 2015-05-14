@@ -111,4 +111,20 @@ class Part
     {
         $this->id = $partId;
     }
+
+    /**
+     * @return string
+     */
+    public function generateXMLSign()
+    {
+        return 'G';
+    }
+
+    /**
+     * @return string
+     */
+    public function generateXMLLine()
+    {
+        return '2';
+    }
 }

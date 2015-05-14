@@ -42,6 +42,22 @@ class Bar
     }
 
     /**
+     * @return KeySignature
+     */
+    public function getKeySignature()
+    {
+        return $this->keySignature;
+    }
+
+    /**
+     * @return TimeSignature
+     */
+    public function getTimeSignature()
+    {
+        return $this->timeSignature;
+    }
+
+    /**
      * @param TimeSignature $timeSignature
      */
     public function setTimeSignature(TimeSignature $timeSignature)
