@@ -6,20 +6,16 @@ use SNicholson\PHPSheetMusic\Exceptions\InvalidBarLength;
 use SNicholson\PHPSheetMusic\Interfaces\MusicalItem;
 
 /**
- * Class Measure
+ * Class Bar
  * @package SNicholson\PHPSheetMusic
  */
-class Measure
+class Bar
 {
 
     /**
      * @var int
      */
     private $length = 0;
-    /**
-     * @var int
-     */
-    private $numOfBars = 0;
     /**
      * @var array
      */
@@ -34,10 +30,10 @@ class Measure
      * @var KeySignature
      */
     private $keySignature;
+
     /**
      * Takes the known key signature
      * @param KeySignature $keySignature
-     * @internal param TimeSignature $timeSignature
      */
     public function __construct(KeySignature $keySignature)
     {
@@ -58,31 +54,16 @@ class Measure
      * @return $this
      * @throws InvalidBarLength
      */
-    public function bar(MusicalItem ...$items)
+    public function addMusicalItems(MusicalItem ...$items)
     {
         $barLength = 0;
         foreach ($items as $item) {
             /** @var MusicalItem $item */
             $barLength += $item->getLength();
-        }
-        if ($barLength != $this->timeSignature->getDecimalBeatsPerBar()) {
-            throw new InvalidBarLength(
-                "Bar submitted to piece did not match the required length of a bar for this voice, expected "
-                . $this->timeSignature->getDecimalBeatsPerBar() . ' got ' . $barLength
-            );
+            $this->bars[] = $item;
         }
         $this->length += $barLength;
-        $this->bars[] = $items;
         return $this;
-    }
-
-    /**
-     * @return float|int
-     */
-    public function getNumOfBars()
-    {
-        $this->numOfBars = $this->length / $this->timeSignature->getDecimalBeatsPerBar();
-        return $this->numOfBars;
     }
 
     /**
@@ -90,6 +71,17 @@ class Measure
      */
     public function getBarContents()
     {
+        $this->checkBarContentLength();
         return $this->bars;
+    }
+
+    private function checkBarContentLength()
+    {
+        if ($this->length != $this->timeSignature->getDecimalBeatsPerBar()) {
+            throw new InvalidBarLength(
+                "Bar submitted to piece did not match the required length of a bar for this voice, expected "
+                . $this->timeSignature->getDecimalBeatsPerBar() . ' got ' . $this->length
+            );
+        }
     }
 }

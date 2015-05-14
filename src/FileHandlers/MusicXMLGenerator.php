@@ -3,9 +3,10 @@
 namespace SNicholson\PHPSheetMusic\FileHandlers;
 
 use SNicholson\PHPSheetMusic\Abstracts\FileHandler;
+use SNicholson\PHPSheetMusic\Interfaces\MusicalItem;
 use SNicholson\PHPSheetMusic\Part;
 use SNicholson\PHPSheetMusic\Piece;
-use SNicholson\PHPSheetMusic\Measure;
+use SNicholson\PHPSheetMusic\Bar;
 use XMLWriter;
 
 /**
@@ -22,6 +23,10 @@ class MusicXMLGenerator extends FileHandler
      * @var mixed
      */
     protected $parts;
+    /**
+     * @var
+     */
+    protected $currentMeasureNumber = 0;
 
     /**
      * @var XMLWriter
@@ -118,20 +123,57 @@ class MusicXMLGenerator extends FileHandler
         $this->writer->endElement();
     }
 
+    /**
+     *
+     */
     protected function generateParts()
     {
         /** @var Part $part */
         foreach ($this->parts as $part) {
             $this->writer->startElement('part');
             $this->writer->writeAttribute('id', $part->getId());
-            /** @var Measure $measures */
-            foreach ($part->getMeasures() as $measures) {
-                $this->writer->startElement('measure');
-                $this->writer->endElement();
-                $measures->getBarContents();
+            /** @var Bar $measures */
+            foreach ($part->getBars() as $measures) {
+                $this->incrementMeasureNumber();
+                $this->generateMeasure($measures);
             }
 
             $this->writer->endElement();
         }
+    }
+
+    /**
+     * @param Bar $bar
+     */
+    protected function generateMeasure(Bar $bar)
+    {
+        //Write the measure element
+        $this->writer->startElement('measure');
+        $this->writer->writeAttribute('number', $this->currentMeasureNumber);
+
+        //Write the measures attributes
+
+
+        /** @var MusicalItem $musicalItem */
+        foreach ($bar->getBarContents() as $musicalItem) {
+            $this->generateMusicalItem($musicalItem);
+        }
+        $this->writer->endElement();
+        $bar->getBarContents();
+    }
+
+    protected function incrementMeasureNumber()
+    {
+        ++$this->currentMeasureNumber;
+    }
+
+    /**
+     * Draws a musical item in the XML
+     * @param MusicalItem $musicalItem
+     */
+    protected function generateMusicalItem(MusicalItem $musicalItem)
+    {
+        $this->writer->startElement('note');
+        $this->writer->endElement();
     }
 }

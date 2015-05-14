@@ -33,7 +33,7 @@ class Part
     /**
      * @var
      */
-    protected $measures = [];
+    protected $bars = [];
     /**
      * @var
      */
@@ -67,17 +67,17 @@ class Part
     /**
      * @return mixed
      */
-    public function getMeasures()
+    public function getBars()
     {
-        return $this->measures;
+        return $this->bars;
     }
 
     /**
      * @param mixed $measures
      */
-    public function setMeasures(Measure ...$measures)
+    public function setBars(Bar ...$measures)
     {
-        $this->measures = $measures;
+        $this->bars = $measures;
     }
 
     /**
@@ -111,5 +111,4 @@ class Part
     {
         $this->id = $partId;
     }
-
 }

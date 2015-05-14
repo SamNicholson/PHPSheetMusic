@@ -15,10 +15,11 @@ class MF
      * @param $pitch
      * @param null $octave
      * @param null $modifiers
+     * @return Note
      */
     public static function breve($pitch, $octave = null, $modifiers = null)
     {
-        self::note($pitch, Note::BREVE, $octave = null, $modifiers);
+        return self::note($pitch, Note::BREVE, $octave = null, $modifiers);
     }
 
     /**
@@ -124,10 +125,11 @@ class MF
 
     /**
      * @param null $modifiers
+     * @return Rest
      */
     public static function semiQuaverRest($modifiers = null)
     {
-        self::rest(Note::SEMIQUAVER, $modifiers);
+        return self::rest(Note::SEMIQUAVER, $modifiers);
     }
 
     /**
@@ -222,11 +224,11 @@ class MF
      * Returns a new instance of a voice
      * @param TimeSignature $timeSignature
      * @param KeySignature $keySignature
-     * @return Measure
+     * @return Bar
      */
     public static function voice(TimeSignature $timeSignature, KeySignature $keySignature)
     {
-        return new Measure($timeSignature, $keySignature);
+        return new Bar($timeSignature, $keySignature);
     }
 
 }
