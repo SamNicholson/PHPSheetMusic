@@ -4,6 +4,7 @@ namespace SNicholson\PHPSheetMusic\FileHandlers;
 
 use SNicholson\PHPSheetMusic\Abstracts\FileHandler;
 use SNicholson\PHPSheetMusic\Interfaces\MusicalItem;
+use SNicholson\PHPSheetMusic\Note;
 use SNicholson\PHPSheetMusic\Part;
 use SNicholson\PHPSheetMusic\Piece;
 use SNicholson\PHPSheetMusic\Bar;
@@ -105,6 +106,7 @@ class MusicXMLGenerator extends FileHandler
     protected function endDocument()
     {
         $this->writer->endElement();
+        $this->writer->endElement();
     }
 
     /**
@@ -172,11 +174,13 @@ class MusicXMLGenerator extends FileHandler
         $this->writer->writeElement('line', $part->generateXMLLine());
         $this->writer->endElement();
 
+        //End the attributes element
+        $this->writer->endElement();
+
         /** @var MusicalItem $musicalItem */
         foreach ($bar->getBarContents() as $musicalItem) {
             $this->generateMusicalItem($musicalItem);
         }
-        $this->writer->endElement();
         $bar->getBarContents();
     }
 
@@ -187,11 +191,17 @@ class MusicXMLGenerator extends FileHandler
 
     /**
      * Draws a musical item in the XML
-     * @param MusicalItem $musicalItem
+     * @param MusicalItem|Note $musicalItem
      */
-    protected function generateMusicalItem(MusicalItem $musicalItem)
+    protected function generateMusicalItem(Note $musicalItem)
     {
         $this->writer->startElement('note');
+            $this->writer->startElement('pitch');
+                $this->writer->writeElement('step', $musicalItem->getNoteName());
+                $this->writer->writeElement('octave', $musicalItem->getOctave());
+            $this->writer->endElement();
+            $this->writer->writeElement('duration', $musicalItem->getLength());
+            $this->writer->writeElement('type', $musicalItem->getNoteType());
         $this->writer->endElement();
     }
 }

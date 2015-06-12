@@ -24,7 +24,7 @@ class Note implements MusicalItem
      */
     const MINIM = 2;
     /**
-     * Crotchet Contstant
+     * Crotchet Constant
      */
     const CROTCHET = 1;
     /**
@@ -176,15 +176,12 @@ class Note implements MusicalItem
      */
     public function __construct($pitch, $length = Note::CROTCHET, $modifiers = null)
     {
-        $this->octave = Octave::middle();
+        $this->octave = empty($modifiers['octave']) ? Octave::middle() : $modifiers['octave'];
         $this->length = $length;
         $this->noteName = $pitch;
         $this->pitch = $this->pitchMap[$pitch];
-        if (!empty($modifiers) && is_string($modifiers)) {
-            $this->modifiers[] = $modifiers;
-        } elseif (!empty($modifiers) && is_array($modifiers)) {
-            $this->modifiers = $modifiers;
-        }
+
+        $this->setModifiers($modifiers);
         $this->handlePitchModifiers();
         $this->handleLengthModifiers();
         return $this;
@@ -213,12 +210,21 @@ class Note implements MusicalItem
     }
 
     /**
-     * Returns the lengoth of the note in decimals
+     * Returns the length of the note in decimals
      * @return mixed
      */
     public function getLength()
     {
         return $this->length;
+    }
+
+    /**
+     * Returns the name type of the note
+     * @return int
+     */
+    public function getNoteType()
+    {
+        return strtolower(NoteTypes::getNotesByName()[$this->length]);
     }
 
     /**
@@ -228,6 +234,19 @@ class Note implements MusicalItem
     public function getPitch()
     {
         return $this->pitch;
+    }
+
+    /**
+     * Sets the modifiers for the note, be that a string or array
+     * @param $modifiers
+     */
+    private function setModifiers($modifiers)
+    {
+        if (!empty($modifiers) && is_string($modifiers)) {
+            $this->modifiers[] = $modifiers;
+        } elseif (!empty($modifiers) && is_array($modifiers)) {
+            $this->modifiers = $modifiers;
+        }
     }
 
     /**
@@ -247,6 +266,4 @@ class Note implements MusicalItem
     {
         return $this->noteName;
     }
-
-
 }
