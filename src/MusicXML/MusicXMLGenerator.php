@@ -1,8 +1,7 @@
 <?php
 
-namespace SNicholson\PHPSheetMusic\FileHandlers;
+namespace SNicholson\PHPSheetMusic\MusicXML;
 
-use SNicholson\PHPSheetMusic\Abstracts\FileHandler;
 use SNicholson\PHPSheetMusic\Interfaces\MusicalItem;
 use SNicholson\PHPSheetMusic\Note;
 use SNicholson\PHPSheetMusic\Part;
@@ -14,7 +13,7 @@ use XMLWriter;
  * Class MusicXMLGenerator
  * @package SNicholson\PHPSheetMusic\FileHandlers
  */
-class MusicXMLGenerator extends FileHandler
+class MusicXMLGenerator
 {
     /**
      * @var Piece

@@ -1,19 +1,39 @@
 <?php
+
+namespace SNicholson\PHPSheetMusic\Interfaces;
+
 /**
- * Created by PhpStorm.
- * User: Sam
- * Date: 11/05/2015
- * Time: 23:30
+ * Interface FileHandler
+ * @package interfaces
  */
-
-namespace interfaces;
-
-
 interface FileHandler
 {
 
-    public function openFile($filePath);
+    /**
+     * @param $filePath
+     * @return mixed
+     */
+    public function open($filePath);
 
-    public function saveFile($filePath = null);
+    /**
+     * @param null $filePath
+     * @return mixed
+     */
+    public function save();
 
+    /**
+     * @param $filePath
+     * @return mixed
+     */
+    public function saveAs($filePath);
 }
+
+
+
+
+
+
+
+
+
+

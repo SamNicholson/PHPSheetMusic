@@ -3,7 +3,7 @@
 namespace SNicholson\PHPSheetMusic\Tests;
 
 use PHPUnit_Framework_TestCase;
-use SNicholson\PHPSheetMusic\FileHandlers\MusicXMLGenerator;
+use SNicholson\PHPSheetMusic\MusicXML\MusicXMLGenerator;
 use SNicholson\PHPSheetMusic\KeySignature;
 use SNicholson\PHPSheetMusic\Bar;
 use SNicholson\PHPSheetMusic\MF;
